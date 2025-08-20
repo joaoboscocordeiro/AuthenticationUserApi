@@ -1,6 +1,6 @@
-# EscolaWeb
+# Authetication User Api
 
-Aplicação Para Controle de Alunos
+Aplicação Completa Para Controle de Alunos
 
 ----------------------------------------------------------------------------------------------------
 
