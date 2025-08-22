@@ -3,3 +3,6 @@
 ################################################################################
 
 /obj/project.nuget.cache
+/.vs/AuthenticationUserApi/FileContentIndex/09396a52-4502-4775-a205-00f1bc3a6d67.vsidx
+/.vs/AuthenticationUserApi/v17/.suo
+/obj/Debug/net9.0/apphost.exe
