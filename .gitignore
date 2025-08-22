@@ -3,3 +3,27 @@
 ################################################################################
 
 /bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/obj/Debug/net9.0/AuthenticationUserApi.dll
+/obj/Debug/net9.0/AuthenticationUserApi.genruntimeconfig.cache
+/obj/Debug/net9.0/AuthenticationUserApi.MvcApplicationPartsAssemblyInfo.cache
+/obj/Debug/net9.0/AuthenticationUserApi.MvcApplicationPartsAssemblyInfo.cs
+/obj/Debug/net9.0/AuthenticationUserApi.pdb
+/obj/Debug/net9.0/AuthenticationUserApi.sourcelink.json
+/obj/Debug/net9.0/ref/AuthenticationUserApi.dll
+/obj/Debug/net9.0/refint/AuthenticationUserApi.dll
+/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/obj/Debug/net9.0/staticwebassets.build.json
+/obj/Debug/net9.0/staticwebassets.build.json.cache
+/obj/project.nuget.cache
+/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/obj/Debug/net9.0/Authenti.C1660ECA.Up2Date
+/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
