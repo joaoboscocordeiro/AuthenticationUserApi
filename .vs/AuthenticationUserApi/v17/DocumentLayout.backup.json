@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "F:\\Projetos\\C#\\AuthenticationUserApi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|f:\\projetos\\c#\\authenticationuserapi\\data\\seedroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|solutionrelative:data\\seedroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|f:\\projetos\\c#\\authenticationuserapi\\dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|solutionrelative:dtos\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|f:\\projetos\\c#\\authenticationuserapi\\services\\auth\\iauthinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|solutionrelative:services\\auth\\iauthinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|f:\\projetos\\c#\\authenticationuserapi\\services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|solutionrelative:services\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|f:\\projetos\\c#\\authenticationuserapi\\services\\auth\\iauthinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{100D3AC7-7876-4C20-8E11-A66B94C2D632}|AuthenticationUserApi.csproj|solutionrelative:services\\auth\\iauthinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,6 +55,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SeedRoles.cs",
+              "DocumentMoniker": "F:\\Projetos\\C#\\AuthenticationUserApi\\Data\\SeedRoles.cs",
+              "RelativeDocumentMoniker": "Data\\SeedRoles.cs",
+              "ToolTip": "F:\\Projetos\\C#\\AuthenticationUserApi\\Data\\SeedRoles.cs",
+              "RelativeToolTip": "Data\\SeedRoles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T17:57:32.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "F:\\Projetos\\C#\\AuthenticationUserApi\\Dtos\\RegisterDto.cs",
               "RelativeDocumentMoniker": "Dtos\\RegisterDto.cs",
@@ -63,7 +80,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "IAuthInterface.cs",
               "DocumentMoniker": "F:\\Projetos\\C#\\AuthenticationUserApi\\Services\\Auth\\IAuthInterface.cs",
               "RelativeDocumentMoniker": "Services\\Auth\\IAuthInterface.cs",
@@ -71,8 +88,7 @@
               "RelativeToolTip": "Services\\Auth\\IAuthInterface.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-22T17:24:45.486Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-22T17:24:45.486Z"
             },
             {
               "$type": "Document",
