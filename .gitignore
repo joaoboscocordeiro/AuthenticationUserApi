@@ -29,3 +29,8 @@
 /bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
 /bin/Debug/net9.0/appsettings.Development.json
 /bin/Debug/net9.0/appsettings.Development.json
+/.vs/AuthenticationUserApi/v17/DocumentLayout.json
+/.vs/AuthenticationUserApi/v17/DocumentLayout.backup.json
+/.vs/AuthenticationUserApi/v17/.suo
+/.vs/AuthenticationUserApi/FileContentIndex/fa0b5812-d0c5-441a-bb1e-055c40f821d9.vsidx
+*.vsidx
