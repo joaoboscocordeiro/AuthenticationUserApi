@@ -27,3 +27,5 @@
 /bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 /bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+/bin/Debug/net9.0/appsettings.Development.json
+/bin/Debug/net9.0/appsettings.Development.json
