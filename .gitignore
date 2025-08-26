@@ -10,3 +10,7 @@
 /.vs/AuthenticationUserApi/v17/DocumentLayout.json
 /obj/Debug/net9.0/AuthenticationUserApi.AssemblyInfoInputs.cache
 /obj/Debug/net9.0/AuthenticationUserApi.assets.cache
+/obj/Debug/net9.0/AuthenticationUserApi.AssemblyInfo.cs
+/obj/Debug/net9.0/AuthenticationUserApi.csproj.AssemblyReference.cache
+/obj/Debug/net9.0/AuthenticationUserApi.GeneratedMSBuildEditorConfig.editorconfig
+/obj/Debug/net9.0/rpswa.dswa.cache.json
