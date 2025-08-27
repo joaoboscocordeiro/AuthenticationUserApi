@@ -1,4 +1,4 @@
-﻿namespace AuthenticationUserApi.Dtos
+﻿namespace AuthenticationUserApi.Dtos.Register
 {
     public class RegisterDto
     {

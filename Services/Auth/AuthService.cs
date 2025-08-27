@@ -1,12 +1,17 @@
-﻿using AuthenticationUserApi.Dtos;
+﻿using AuthenticationUserApi.Dtos.Login;
+using AuthenticationUserApi.Dtos.Register;
 using AuthenticationUserApi.Models;
 using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using WebApiUser.Models;
 
 namespace AuthenticationUserApi.Services.Auth
 {
     public class AuthService : IAuthInterface
     {
+        ResponseModel<string> response = new ResponseModel<string>();
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -16,10 +21,54 @@ namespace AuthenticationUserApi.Services.Auth
             _roleManager = roleManager;
         }
 
+        public async Task<ResponseModel<string>> Login(LoginDto loginDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(loginDto.Usuario);
+
+                if (user == null)
+                {
+                    response.Mensagem = "Credenciais inválidas!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var validPassword = await _userManager.CheckPasswordAsync(user, loginDto.Senha);
+
+                if (!validPassword)
+                {
+                    response.Mensagem = "Credenciais inválidas!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var authClaims = new List<Claim>
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                    new Claim("nome", user.NomeCompleto),
+                    new Claim("usuario", user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id)
+                };
+
+                var userRoles = await _userManager.GetRolesAsync(user);
+
+                foreach(var role in userRoles)
+                {
+                    authClaims.Add(new Claim(ClaimTypes.Role, role));
+                }
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
+
         public async Task<ResponseModel<string>> Register(RegisterDto registerDto)
         {
-            ResponseModel<string> response = new ResponseModel<string>();
-
             try
             {
                 var user = new ApplicationUser

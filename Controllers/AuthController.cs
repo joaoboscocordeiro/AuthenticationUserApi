@@ -1,4 +1,4 @@
-﻿using AuthenticationUserApi.Dtos;
+﻿using AuthenticationUserApi.Dtos.Register;
 using AuthenticationUserApi.Services.Auth;
 using Microsoft.AspNetCore.Mvc;
 
