@@ -2,8 +2,10 @@
 using AuthenticationUserApi.Dtos.Register;
 using AuthenticationUserApi.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using WebApiUser.Models;
 
 namespace AuthenticationUserApi.Services.Auth
@@ -14,11 +16,13 @@ namespace AuthenticationUserApi.Services.Auth
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IConfiguration _configuration;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _configuration = configuration;
         }
 
         public async Task<ResponseModel<string>> Login(LoginDto loginDto)
@@ -58,6 +62,23 @@ namespace AuthenticationUserApi.Services.Auth
                 {
                     authClaims.Add(new Claim(ClaimTypes.Role, role));
                 }
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+
+                var token = new JwtSecurityToken(
+                    issuer: _configuration["Jwt:Issuer"],
+                    audience: _configuration["Jwt:Audience"],
+                    claims: authClaims,
+                    expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:ExpiresInMinutes"])),
+                    signingCredentials: creds
+                    );
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+                response.Dados = tokenString;
+                response.Mensagem = "Usuário logado com sucesso!";
+                return response;
             }
             catch (Exception ex)
             {

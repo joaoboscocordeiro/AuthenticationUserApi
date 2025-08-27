@@ -1,4 +1,5 @@
-﻿using AuthenticationUserApi.Dtos.Register;
+﻿using AuthenticationUserApi.Dtos.Login;
+using AuthenticationUserApi.Dtos.Register;
 using AuthenticationUserApi.Services.Auth;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,16 @@ namespace AuthenticationUserApi.Controllers
             var result = await _authInterface.Register(registerDto);
 
             if(!result.Status) return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDto loginDto)
+        {
+            var result = await _authInterface.Login(loginDto);
+
+            if (!result.Status) return BadRequest(result);
 
             return Ok(result);
         }
