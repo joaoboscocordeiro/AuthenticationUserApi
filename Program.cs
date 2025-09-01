@@ -1,6 +1,7 @@
 using AuthenticationUserApi.Data;
 using AuthenticationUserApi.Models;
 using AuthenticationUserApi.Services.Auth;
+using AuthenticationUserApi.Services.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IAuthInterface, AuthService>();
+builder.Services.AddScoped<IEmailInterface, EmailService>();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
 

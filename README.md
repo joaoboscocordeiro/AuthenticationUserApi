@@ -1,6 +1,6 @@
 # Authetication User Api
 
-Aplicação Completa Para Controle de Alunos
+Aplicação Completa Para Cadastro de Usuários.
 
 ----------------------------------------------------------------------------------------------------
 
