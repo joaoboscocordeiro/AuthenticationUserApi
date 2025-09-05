@@ -1,6 +1,7 @@
 ﻿using AuthenticationUserApi.Dtos.Login;
 using AuthenticationUserApi.Dtos.Register;
 using AuthenticationUserApi.Models;
+using AuthenticationUserApi.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,12 +18,14 @@ namespace AuthenticationUserApi.Services.Auth
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IEmailInterface _emailInterface;
 
-        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AuthService(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IEmailInterface emailInterface)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _emailInterface = emailInterface;
         }
 
         public async Task<ResponseModel<string>> Login(LoginDto loginDto)
@@ -130,6 +133,8 @@ namespace AuthenticationUserApi.Services.Auth
                     await _userManager.AddToRoleAsync(user, role);
                 }
 
+                await confirmacaoEmail(user);
+
                 response.Mensagem = "Usuário cadastrado com sucesso!";
                 return response;
             }
@@ -139,6 +144,17 @@ namespace AuthenticationUserApi.Services.Auth
                 response.Status = false;
                 return response;
             }
+        }
+
+        private async Task confirmacaoEmail(ApplicationUser user)
+        {
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+            var confirmUrl = $"https://localhost:7011/api/auth/confirmar-email?userId={user.Id}&token={Uri.EscapeDataString(token)}";
+
+            var mensagem = $"<h3>Confirme seu a-mail</h3><p>Clique no link para confirmar: <a href='{confirmUrl}'>Confirmar</a></p>";
+
+            await _emailInterface.EnviarEmailAsync(user.Email, "Confirmação de E-mail", mensagem);
         }
     }
 }
