@@ -41,6 +41,13 @@ namespace AuthenticationUserApi.Services.Auth
                     return response;
                 }
 
+                if(!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    response.Mensagem = "E-mail não confirmado!";
+                    response.Status = false;
+                    return response;
+                }
+
                 var validPassword = await _userManager.CheckPasswordAsync(user, loginDto.Senha);
 
                 if (!validPassword)
@@ -135,7 +142,7 @@ namespace AuthenticationUserApi.Services.Auth
 
                 await confirmacaoEmail(user);
 
-                response.Mensagem = "Usuário cadastrado com sucesso!";
+                response.Mensagem = "Usuário cadastrado com sucesso. Verifique seu e-mail para confirmar.";
                 return response;
             }
             catch (Exception ex)
@@ -155,6 +162,39 @@ namespace AuthenticationUserApi.Services.Auth
             var mensagem = $"<h3>Confirme seu a-mail</h3><p>Clique no link para confirmar: <a href='{confirmUrl}'>Confirmar</a></p>";
 
             await _emailInterface.EnviarEmailAsync(user.Email, "Confirmação de E-mail", mensagem);
+        }
+
+        public async Task<ResponseModel<string>> ConfirmarEmail(string userId, string token)
+        {
+            try
+            {
+                var user  = await _userManager.FindByIdAsync(userId);
+
+                if (user == null)
+                {
+                    response.Mensagem = "Usuário não localizado!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+
+                if (!result.Succeeded)
+                {
+                    response.Mensagem = "Erro ao confirmar e-mail!";
+                    response.Status = false;
+                    return response;
+                }
+
+                response.Mensagem = "E-mail confirmado com sucesso!";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
         }
     }
 }

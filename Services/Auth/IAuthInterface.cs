@@ -8,5 +8,6 @@ namespace AuthenticationUserApi.Services.Auth
     {
         Task<ResponseModel<string>> Register(RegisterDto registerDto);
         Task<ResponseModel<string>> Login(LoginDto loginDto);
+        Task<ResponseModel<string>> ConfirmarEmail(string userId, string token);
     }
 }

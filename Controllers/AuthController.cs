@@ -35,5 +35,15 @@ namespace AuthenticationUserApi.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("confirmar-email")]
+        public async Task<IActionResult> ConfirmarEmail(string userId, string token)
+        {
+            var result = await _authInterface.ConfirmarEmail(userId, token);
+
+            if (!result.Status) return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }
