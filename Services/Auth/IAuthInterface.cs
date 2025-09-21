@@ -11,5 +11,6 @@ namespace AuthenticationUserApi.Services.Auth
         Task<ResponseModel<string>> Login(LoginDto loginDto);
         Task<ResponseModel<string>> ConfirmarEmail(string userId, string token);
         Task<ResponseModel<string>> EsqueciSenha(EsqueciSenhaDto esqueciSenhaDto);
+        Task<ResponseModel<string>> ResetarSenha(ResetarSenhaDto resetarSenhaDto);
     }
 }

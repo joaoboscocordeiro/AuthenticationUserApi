@@ -56,5 +56,15 @@ namespace AuthenticationUserApi.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("resetar-senha")]
+        public async Task<IActionResult> ResetarSenha(ResetarSenhaDto resetarSenhaDto)
+        {
+            var result = await _authInterface.ResetarSenha(resetarSenhaDto);
+
+            if (!result.Status) return BadRequest(result);
+
+            return Ok(result);
+        }
     }
 }

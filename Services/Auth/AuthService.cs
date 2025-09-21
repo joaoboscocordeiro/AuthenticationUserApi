@@ -237,5 +237,38 @@ namespace AuthenticationUserApi.Services.Auth
                 return response;
             }
         }
+
+        public async Task<ResponseModel<string>> ResetarSenha(ResetarSenhaDto resetarSenhaDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(resetarSenhaDto.Usuario);
+
+                if (user == null)
+                {
+                    response.Mensagem = "Usuário não localizado!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var result = await _userManager.ResetPasswordAsync(user, WebUtility.UrlDecode(resetarSenhaDto.Token), resetarSenhaDto.NovaSenha);
+
+                if (!result.Succeeded)
+                {
+                    response.Status = false;
+                    response.Mensagem = string.Join(",", result.Errors.Select(e => e.Description));
+                    return response;
+                }
+
+                response.Mensagem = "Senha redefinida com sucesso!";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
     }
 }
