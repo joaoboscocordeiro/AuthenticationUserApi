@@ -1,10 +1,12 @@
 ﻿using AuthenticationUserApi.Dtos.Login;
 using AuthenticationUserApi.Dtos.Register;
+using AuthenticationUserApi.Dtos.Usuario;
 using AuthenticationUserApi.Models;
 using AuthenticationUserApi.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using WebApiUser.Models;
@@ -187,6 +189,45 @@ namespace AuthenticationUserApi.Services.Auth
                 }
 
                 response.Mensagem = "E-mail confirmado com sucesso!";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<string>> EsqueciSenha(EsqueciSenhaDto esqueciSenhaDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByNameAsync(esqueciSenhaDto.Usuario);
+
+                if (user == null)
+                {
+                    response.Mensagem = "Usuário não localizado!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                var resetLink = $"https://localhost:7011/api/auth/resetar-senha?token={WebUtility.UrlEncode(token)}";
+
+                var mensagem = $"Click no link para redefinir sua senha: <a href='{resetLink}' >Redefinir senha</a>";
+
+                var emailEnviado = await _emailInterface.EnviarEmailAsync(user.Email, "Redefinição de Senha", mensagem);
+
+                if (!emailEnviado)
+                {
+                    response.Mensagem = "Falha ao enviar e-mail!";
+                    response.Status = false;
+                    return response;
+                }
+
+                response.Mensagem = "Se o e-mail estiver cadastrado, um link de redefinição será enviado";
                 return response;
             }
             catch (Exception ex)
