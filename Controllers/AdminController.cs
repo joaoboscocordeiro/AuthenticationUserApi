@@ -1,4 +1,5 @@
-﻿using AuthenticationUserApi.Services.Admin;
+﻿using AuthenticationUserApi.Dtos.Usuario;
+using AuthenticationUserApi.Services.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,20 @@ namespace AuthenticationUserApi.Controllers
             _adminInterface = adminInterface;
         }
 
-        [HttpGet]
+        [HttpGet("usuarios")]
         public async Task<IActionResult> GetUsuariosComRoles()
         {
             var resultado = await _adminInterface.GetUsuariosComRoles();
+
+            if (!resultado.Status) return BadRequest(resultado);
+
+            return Ok(resultado);
+        }
+
+        [HttpPost("adicionar-roles")]
+        public async Task<IActionResult> AdicionarRoles(AtualizarUserRoleDto atualizarUserRoleDto)
+        {
+            var resultado = await _adminInterface.AdicionarRoles(atualizarUserRoleDto);
 
             if (!resultado.Status) return BadRequest(resultado);
 
