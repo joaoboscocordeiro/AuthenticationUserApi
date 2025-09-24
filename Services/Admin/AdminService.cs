@@ -1,5 +1,6 @@
 ﻿using AuthenticationUserApi.Dtos.Usuario;
 using AuthenticationUserApi.Models;
+using Azure;
 using Microsoft.AspNetCore.Identity;
 using WebApiUser.Models;
 
@@ -86,6 +87,41 @@ namespace AuthenticationUserApi.Services.Admin
                 return response;
             }
             catch(Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+        }
+
+        public async Task<ResponseModel<string>> RemoverRoles(AtualizarUserRoleDto atualizarUserRoleDto)
+        {
+            ResponseModel<string> response = new ResponseModel<string>();
+
+            try
+            {
+                var user = await _userManager.FindByIdAsync(atualizarUserRoleDto.UserId);
+
+                if (user == null)
+                {
+                    response.Mensagem = "Usuário não localizado!";
+                    response.Status = false;
+                    return response;
+                }
+
+                var resultado = await _userManager.RemoveFromRolesAsync(user, atualizarUserRoleDto.Roles);
+
+                if (!resultado.Succeeded)
+                {
+                    response.Mensagem = string.Join(", ", resultado.Errors.Select(e => e.Description));
+                    response.Status = false;
+                    return response;
+                }
+
+                response.Mensagem = "Perfís removidos com sucesso!";
+                return response;
+            }
+            catch (Exception ex)
             {
                 response.Mensagem = ex.Message;
                 response.Status = false;

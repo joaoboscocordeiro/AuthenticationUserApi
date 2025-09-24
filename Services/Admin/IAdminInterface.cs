@@ -7,5 +7,6 @@ namespace AuthenticationUserApi.Services.Admin
     {
         Task<ResponseModel<List<ListagemUserRoleDto>>> GetUsuariosComRoles();
         Task<ResponseModel<string>> AdicionarRoles(AtualizarUserRoleDto atualizarUserRoleDto);
+        Task<ResponseModel<string>> RemoverRoles(AtualizarUserRoleDto atualizarUserRoleDto);
     }
 }

@@ -36,5 +36,15 @@ namespace AuthenticationUserApi.Controllers
 
             return Ok(resultado);
         }
+
+        [HttpPost("remover-roles")]
+        public async Task<IActionResult> RemoverRoles(AtualizarUserRoleDto atualizarUserRoleDto)
+        {
+            var resultado = await _adminInterface.RemoverRoles(atualizarUserRoleDto);
+
+            if (!resultado.Status) return BadRequest(resultado);
+
+            return Ok(resultado);
+        }
     }
 }
